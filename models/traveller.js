@@ -22,11 +22,23 @@ Traveller.prototype.calculateTotalDistanceTravelled = function () {
   return this.journeys.reduce((distance, journey) => distance + journey.distance,0)
 };
 
+
 Traveller.prototype.getUniqueModesOfTransport = function () {
-  let tranports =  this.journeys.map(journey => journey.transport)
-  let unique = [...new Set(transports)];
-  return unique;
+  let myArray = this.journeys.map(journey => journey.transport)
+  let myOrderedArray = myArray.reduce(function (accumulator, currentValue) {
+    if (accumulator.indexOf(currentValue) === -1) {
+      accumulator.push(currentValue);
+    }
+    return accumulator;
+  }, [])
+  return myOrderedArray;
 };
+
+// Traveller.prototype.getUniqueModesOfTransport = function () {
+//   let tranports =  this.journeys.map(journey => journey.transport)
+//   let unique = [...new Set(transports)];
+//   return unique;
+// };
 
 
 module.exports = Traveller;
